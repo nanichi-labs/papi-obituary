@@ -55,10 +55,15 @@ export default function App() {
               <div className={`bg-white`}>
                 <div className={`max-w-[800px] m-auto mb-20 px-2 py-20`}>
                   <h2 className={`text-3xl font-bold mb-4`}>Donate with Zelle</h2>
-                  <p>Please send Zelle donations to <strong>407-338-9299</strong>.</p>
-                  {/* <hr className="mb-10" />
+                  <p>Please send Zelle donations to <strong>407-338-9299</strong> or use this QR code:</p>
+                  <img className="w-[320px] m-auto" src="https://papiobituary.s3.us-east-1.amazonaws.com/zelle-mami.jpg" />
+                  <hr className="mb-10 mt-10" />
                   <h2 className={`text-3xl font-bold mb-5`}>Donate with PayPal</h2>
-                  <p>Please send any Zelle donations to <strong>407-338-9299</strong></p> */}
+                  <p>Please send PayPal donations to <strong>jeisleyann@gmail.com</strong></p>
+                  <hr className="mb-10 mt-10" />
+                  <h2 className={`text-3xl font-bold mb-5`}>Donate with Cash App</h2>
+                  <p>Please send CashApp donations to <strong>$angcenteno</strong></p>
+                  <img className="w-[320px] m-auto" src="https://papiobituary.s3.us-east-1.amazonaws.com/cashapp.jpg" />
                 </div>
               </div>
               <div className={`max-w-[800px] m-auto mb-20 px-2`}>
