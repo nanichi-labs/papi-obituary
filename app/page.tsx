@@ -29,29 +29,51 @@ export default function App() {
 	const donations = [
 		{
 			name: 'Brian Buitrago',
-			format: 'zelle',
+			format: 'Zelle',
 			contribution: 100,
 		},
 		{
 			name: 'Jacinto Lopez',
-			format: 'zelle',
+			format: 'Zelle',
 			contribution: 25,
 		},
 		{
 			name: 'Adalberto Galindo',
-			format: 'zelle',
+			format: 'Zelle',
 			contribution: 100,
 		},
 		{
 			name: 'William Hernandez',
-			format: 'zelle',
+			format: 'Zelle',
 			contribution: 400
 		},
 		{
 			name: 'Carmen Cordero',
-			format: 'cashapp',
+			format: 'CashApp',
 			contribution: 10,
 		},
+		{
+			name: 'Wilma Roman',
+			format: 'Zelle',
+			contribution: 500,
+		},
+		{
+			name: 'Yennifer Jaime',
+			format: 'PayPal',
+			contribution: 100,
+		},
+		{
+			name: 'Maria Castillo',
+			format: 'CashApp',
+			contribution: 150,
+		},
+		{
+			name: 'Stephy',
+			format: 'CashApp',
+			contribution: 60,
+		},
+
+
 	];
 
 	useEffect(() => {
@@ -132,20 +154,30 @@ export default function App() {
 								<div className="w-100 bg-gray-200 h-4 relative rounded-full overflow-hidden border-solid border-2 border-blue-900">
 									<div className={`absolute z-10 top-0 left-0 h-full bg-blue-900`} style={{ width: `${percent}%` }}></div>
 								</div>
+								<div className="overflow-hidden whitespace-nowrap py-4">
+									<div className="flex animate-marquee">
+										{donations.map((item, index) => (
+											<span key={index} className="mx-8 text-blue-900 text-lg font-bold">
+												<em>{item.name[0]}{item.name[1]}**** ***</em> - {item.format} - ${item.contribution}
+											</span>
+										))}
+									</div>
+								</div>
 							</div>
 						</div>
 						<div className={`col-span-6 md:col-span-2`}>
 							<h2 className={`text-lg font-bold mb-0 uppercase`}>Donate with Zelle</h2>
-							<p>Please send Zelle donations to <strong>407-338-9299</strong> or use this QR code:</p>
+							<p className={`mb-2`}>Please send Zelle donations to <strong>407-338-9299</strong> or use this QR code:</p>
 							<img className="w-[200px] m-auto" src="https://papiobituary.s3.us-east-1.amazonaws.com/zelle-mami.jpg" />
 						</div>
 						<div className={`col-span-6 md:col-span-2`}>
 							<h2 className={`text-lg font-bold mb-0 uppercase`}>Donate with PayPal</h2>
-							<p>Please send PayPal donations to <strong>jeisleyann@gmail.com</strong></p>
+							<p className={`mb-2`}>Please send PayPal donations to <strong>jeisleyann@gmail.com</strong></p>
+							<img className="w-[200px] m-auto" src="https://papiobituary.s3.us-east-1.amazonaws.com/paypal.jpg" />
 						</div>
 						<div className={`col-span-6 md:col-span-2`}>
 							<h2 className={`text-lg font-bold mb-0 uppercase`}>Donate with Cash App</h2>
-							<p>Please send CashApp donations to <strong>$angcenteno</strong></p>
+							<p className={`mb-2`}>Please send CashApp donations to <strong>$angcenteno</strong></p>
 							<img className="w-[250px] m-auto" src="https://papiobituary.s3.us-east-1.amazonaws.com/cashapp.jpg" />
 						</div>
 					</div>
