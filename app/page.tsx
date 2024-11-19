@@ -21,12 +21,18 @@ const corinthia = Corinthia({
 	weight: "400"
 });
 
+type Donation = {
+	name: string;
+	format: string;
+	contribution: number;
+};
+
 export default function App() {
-	const [total, setTotal] = useState(-150);
+	const [total, setTotal] = useState(0);
 	const [percent, setPercent] = useState(0);
 	const goal = 7000;
 
-	const donations = [
+	const donations: Donation[] = [
 		{
 			name: 'Brian Buitrago',
 			format: 'Zelle',
@@ -72,12 +78,19 @@ export default function App() {
 			format: 'CashApp',
 			contribution: 60,
 		},
+		{
+			name: 'Elba Roman',
+			format: 'Zelle',
+			contribution: 250,
+		},
 
 
 	];
+	const shuffledDonations = [...donations].sort(() => Math.random() - 0.5);
+
 
 	useEffect(() => {
-		const sum = donations.reduce((acc, donation) => acc + donation.contribution, -150);
+		const sum = donations.reduce((acc, donation) => acc + donation.contribution, 0);
 		const getPercent = Number(sum*100/goal).toFixed(0);
 		setTotal(sum);
 		setPercent(Number(getPercent));
@@ -104,8 +117,9 @@ export default function App() {
 							<h1 className={`text-7xl md:text-9xl ${corinthia.className} text-blue-900 mb-6`}>Angel Centeno</h1>
 							<p className={`font-bold uppercase tracking-widest relative z-10 mb-10 bg-white py-2`}>Feb. 27, 1966 - Nov. 14, 2024</p>
 
-							<a href="#donate" className="mb-4 bg-blue-900 text-white rounded-md py-3 px-10 mr-2 uppercase text-1xl inline-block hover:bg-black transition-colors">Donate</a>
-							<a href="#location" className="mb-4 bg-blue-800 text-white rounded-md py-3 px-10 uppercase text-1xl inline-block hover:bg-black transition-colors">Location</a>
+							<a href="#donate" className="mb-4 bg-blue-900 text-white rounded-md py-3 px-10 mr-2 uppercase text-md md:text-1xl inline-block hover:bg-black transition-colors">Donate</a>
+							<a href="#location" className="mb-4 bg-blue-800 text-white rounded-md py-3 mr-2 px-10 uppercase text-md md:text-1xl inline-block hover:bg-black transition-colors">Location</a>
+							<a href="#live-stream" className="mb-4 bg-blue-800 text-white rounded-md py-3 px-10 uppercase text-md md:text-1xl inline-block hover:bg-black transition-colors">Live Stream</a>
 
 						</div>
 						<div className={`col-span-4 text-[1.2em] md:text-[1.4em]`}>
@@ -143,42 +157,60 @@ export default function App() {
 					</div>
 				</div>
 
-				<div id="donate" className={`container max-w-[1200px] m-auto py-20`}>
-					<div className={`grid grid-cols-6 gap-8 text-[1.1em]`}>
-						<div className={`col-span-6 mb-10`}>
-							<div className={`w-100 max-w-[600px] m-auto`}>
-								<div className="mb-2">
-									<h2 className={`text-lg font-bold mb-0 uppercase`}>Goal</h2>
-									<p>{percent}% raised of <span className="text-4xl">${Number(goal).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span></p>
-								</div>
-								<div className="w-100 bg-gray-200 h-4 relative rounded-full overflow-hidden border-solid border-2 border-blue-900">
-									<div className={`absolute z-10 top-0 left-0 h-full bg-blue-900`} style={{ width: `${percent}%` }}></div>
-								</div>
-								<div className="overflow-hidden whitespace-nowrap py-4">
-									<div className="flex animate-marquee">
-										{donations.map((item, index) => (
-											<span key={index} className="mx-8 text-blue-900 text-lg font-bold">
-												<em>{item.name[0]}{item.name[1]}**** ***</em> - {item.format} - ${item.contribution}
-											</span>
-										))}
+				<div id="live-stream">
+					<div className={`container max-w-[1200px] m-auto py-20`}>
+						<div className="mb-6">
+							<h2 className="text-lg uppercase font-bold">Live Stream</h2>
+							<p>A webcast for the services of Angel L Centeno Rodriguez can be viewed from 5 PM - 8 PM.</p>
+							<a className="text-blue-600 underline text-sm" href="https://view.oneroomstreaming.com/index.php?data=MTczMTk2NTczOTMzNzQ4MCZvbmVyb29tLWFkbWluJmNvcHlfbGluaw==" target="_blank"><em>Open live stream in new window</em></a>
+						</div>
+						<div className={`relative pt-[60%]`}>
+							<iframe
+								src="https://view.oneroomstreaming.com/index.php?data=MTczMTk2NTczOTMzNzQ4MCZvbmVyb29tLWFkbWluJmNvcHlfbGluaw=="
+								className="w-full h-full absolute inset-0"
+							/>
+						</div>
+					</div>
+				</div>
+
+				<div id="donate" className={`bg-white`}>
+					<div className={`container max-w-[1200px] m-auto py-20`}>
+						<div className={`grid grid-cols-6 gap-8 text-[1.1em]`}>
+							<div className={`col-span-6 mb-10`}>
+								<div className={`w-100 max-w-[600px] m-auto`}>
+									<div className="mb-2">
+										<h2 className={`text-lg font-bold mb-0 uppercase`}>Goal</h2>
+										<p>{percent}% raised of <span className="text-4xl">${Number(goal).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span></p>
+									</div>
+									<div className="w-100 bg-gray-200 h-4 relative rounded-full overflow-hidden border-solid border-2 border-blue-900">
+										<div className={`absolute z-10 top-0 left-0 h-full bg-blue-900`} style={{ width: `${percent}%` }}></div>
+									</div>
+									<div className="overflow-hidden whitespace-nowrap py-4">
+										<div className="flex animate-marquee space-x-8">
+											{ shuffledDonations.map((item, index) => (
+												<span key={index} className="mx-8 text-blue-900 text-lg font-bold">
+													<em>{item.name[0]}{item.name[1]}**** ****</em> - {item.format} - ${item.contribution}
+												</span>
+											)) }
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-						<div className={`col-span-6 md:col-span-2`}>
-							<h2 className={`text-lg font-bold mb-0 uppercase`}>Donate with Zelle</h2>
-							<p className={`mb-2`}>Please send Zelle donations to <strong>407-338-9299</strong> or use this QR code:</p>
-							<img className="w-[200px] m-auto" src="https://papiobituary.s3.us-east-1.amazonaws.com/zelle-mami.jpg" />
-						</div>
-						<div className={`col-span-6 md:col-span-2`}>
-							<h2 className={`text-lg font-bold mb-0 uppercase`}>Donate with PayPal</h2>
-							<p className={`mb-2`}>Please send PayPal donations to <strong>jeisleyann@gmail.com</strong></p>
-							<img className="w-[200px] m-auto" src="https://papiobituary.s3.us-east-1.amazonaws.com/paypal.jpg" />
-						</div>
-						<div className={`col-span-6 md:col-span-2`}>
-							<h2 className={`text-lg font-bold mb-0 uppercase`}>Donate with Cash App</h2>
-							<p className={`mb-2`}>Please send CashApp donations to <strong>$angcenteno</strong></p>
-							<img className="w-[250px] m-auto" src="https://papiobituary.s3.us-east-1.amazonaws.com/cashapp.jpg" />
+							<div className={`col-span-6 md:col-span-2`}>
+								<h2 className={`text-lg font-bold mb-0 uppercase`}>Donate with Zelle</h2>
+								<p className={`mb-2`}>Please send Zelle donations to <strong>407-338-9299</strong> or use this QR code:</p>
+								<img className="w-[200px] m-auto" src="https://papiobituary.s3.us-east-1.amazonaws.com/zelle-mami.jpg" />
+							</div>
+							<div className={`col-span-6 md:col-span-2`}>
+								<h2 className={`text-lg font-bold mb-0 uppercase`}>Donate with PayPal</h2>
+								<p className={`mb-2`}>Please send PayPal donations to <strong>jeisleyann@gmail.com</strong></p>
+								<img className="w-[200px] m-auto" src="https://papiobituary.s3.us-east-1.amazonaws.com/paypal.jpg" />
+							</div>
+							<div className={`col-span-6 md:col-span-2`}>
+								<h2 className={`text-lg font-bold mb-0 uppercase`}>Donate with Cash App</h2>
+								<p className={`mb-2`}>Please send CashApp donations to <strong>$angcenteno</strong></p>
+								<img className="w-[250px] m-auto" src="https://papiobituary.s3.us-east-1.amazonaws.com/cashapp.jpg" />
+							</div>
 						</div>
 					</div>
 				</div>
