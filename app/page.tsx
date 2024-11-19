@@ -93,6 +93,11 @@ export default function App() {
 			format: 'Zelle',
 			contribution: 40,
 		},
+		{
+			name: 'Oscar Rodriguez',
+			format: 'Zelle',
+			contribution: 100,
+		},
 	];
 	const shuffledDonations = [...donations].sort(() => Math.random() - 0.5);
 
