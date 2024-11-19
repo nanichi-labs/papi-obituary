@@ -83,14 +83,24 @@ export default function App() {
 			format: 'Zelle',
 			contribution: 250,
 		},
-
-
+		{
+			name: 'Jorge Valdivia',
+			format: 'Paypal',
+			contribution: 500,
+		},
+		{
+			name: 'Yareni Barron',
+			format: 'Zelle',
+			contribution: 40,
+		},
 	];
 	const shuffledDonations = [...donations].sort(() => Math.random() - 0.5);
 
 
 	useEffect(() => {
 		const sum = donations.reduce((acc, donation) => acc + donation.contribution, 0);
+		// console.log(sum);
+		
 		const getPercent = Number(sum*100/goal).toFixed(0);
 		setTotal(sum);
 		setPercent(Number(getPercent));
