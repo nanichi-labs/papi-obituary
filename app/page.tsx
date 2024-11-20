@@ -103,6 +103,11 @@ export default function App() {
 			format: 'Zelle',
 			contribution: 100,
 		},
+		{
+			name: 'Alvin Baez',
+			format: 'Zelle',
+			contribution: 400,
+		},
 	];
 	const shuffledDonations = [...donations].sort(() => Math.random() - 0.5);
 
