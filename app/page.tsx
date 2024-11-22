@@ -108,6 +108,16 @@ export default function App() {
 			format: 'Zelle',
 			contribution: 400,
 		},
+		{
+			name: 'Rachel Collazo',
+			format: 'Zelle',
+			contribution: 100,
+		},
+		{
+			name: 'Wilson',
+			format: 'CashApp',
+			contribution: 300,
+		},
 	];
 	const shuffledDonations = [...donations].sort(() => Math.random() - 0.5);
 
