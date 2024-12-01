@@ -152,7 +152,9 @@ export default function App() {
 							<h1 className={`text-7xl md:text-9xl ${corinthia.className} text-blue-900 mb-6`}>Angel Centeno</h1>
 							<p className={`font-bold uppercase tracking-widest relative z-10 mb-10 bg-white py-2`}>Feb. 27, 1966 - Nov. 14, 2024</p>
 
+							{/*
 							<a href="#donate" className="mb-4 bg-blue-900 text-white rounded-md py-3 px-10 mr-2 uppercase text-md md:text-1xl inline-block hover:bg-black transition-colors">Donate</a>
+							*/}
 							<a href="#location" className="mb-4 bg-blue-800 text-white rounded-md py-3 mr-2 px-10 uppercase text-md md:text-1xl inline-block hover:bg-black transition-colors">Location</a>
 							<a href="#live-stream" className="mb-4 bg-blue-800 text-white rounded-md py-3 px-10 uppercase text-md md:text-1xl inline-block hover:bg-black transition-colors">Live Stream</a>
 
@@ -208,47 +210,51 @@ export default function App() {
 					</div>
 				</div>
 
-				<div id="donate" className={`bg-white`}>
-					<div className={`container max-w-[1200px] m-auto py-20`}>
-						<div className={`grid grid-cols-6 gap-8 text-[1.1em]`}>
-							<div className={`col-span-6 mb-10`}>
-								<div className={`w-100 max-w-[600px] m-auto`}>
-									<div className="mb-2">
-										<h2 className={`text-lg font-bold mb-0 uppercase`}>Goal</h2>
-										<p>{percent}% raised of <span className="text-4xl">${Number(goal).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span></p>
-									</div>
-									<div className="w-100 bg-gray-200 h-4 relative rounded-full overflow-hidden border-solid border-2 border-blue-900">
-										<div className={`absolute z-10 top-0 left-0 h-full bg-blue-900`} style={{ width: `${percent}%` }}></div>
-									</div>
-									<div className="overflow-hidden whitespace-nowrap py-4">
-										<div className="flex animate-marquee space-x-8">
-											{ shuffledDonations.map((item, index) => (
-												<span key={index} className="mx-8 text-blue-900 text-lg font-bold">
-													<em>{item.name[0]}{item.name[1]}**** ****</em> - {item.format} - ${item.contribution}
-												</span>
-											)) }
+			
+					<div id="donate" className={`bg-white`}>
+						<div className={`container max-w-[1200px] m-auto py-20`}>
+							<div className={`grid grid-cols-6 gap-8 text-[1.1em]`}>
+								<div className={`col-span-6 mb-10`}>
+									<div className={`w-100 max-w-[600px] m-auto`}>
+										{/*
+										<div className="mb-2">
+											<h2 className={`text-lg font-bold mb-0 uppercase`}>Goal</h2>
+											<p>{percent}% raised of <span className="text-4xl">${Number(goal).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span></p>
 										</div>
+										
+										<div className="w-100 bg-gray-200 h-4 relative rounded-full overflow-hidden border-solid border-2 border-blue-900">
+											<div className={`absolute z-10 top-0 left-0 h-full bg-blue-900`} style={{ width: `${percent}%` }}></div>
+										</div>
+										<div className="overflow-hidden whitespace-nowrap py-4">
+											<div className="flex animate-marquee space-x-8">
+												{ shuffledDonations.map((item, index) => (
+													<span key={index} className="mx-8 text-blue-900 text-lg font-bold">
+														<em>{item.name[0]}{item.name[1]}**** ****</em> - {item.format} - ${item.contribution}
+													</span>
+												)) }
+											</div>
+										</div>
+										*/}
 									</div>
 								</div>
-							</div>
-							<div className={`col-span-6 md:col-span-2`}>
-								<h2 className={`text-lg font-bold mb-0 uppercase`}>Donate with Zelle</h2>
-								<p className={`mb-2`}>Please send Zelle donations to <strong>407-338-9299</strong> or use this QR code:</p>
-								<img className="w-[200px] m-auto" src="https://papiobituary.s3.us-east-1.amazonaws.com/zelle-mami.jpg" />
-							</div>
-							<div className={`col-span-6 md:col-span-2`}>
-								<h2 className={`text-lg font-bold mb-0 uppercase`}>Donate with PayPal</h2>
-								<p className={`mb-2`}>Please send PayPal donations to <strong>jeisleyann@gmail.com</strong></p>
-								<img className="w-[200px] m-auto" src="https://papiobituary.s3.us-east-1.amazonaws.com/paypal.jpg" />
-							</div>
-							<div className={`col-span-6 md:col-span-2`}>
-								<h2 className={`text-lg font-bold mb-0 uppercase`}>Donate with Cash App</h2>
-								<p className={`mb-2`}>Please send CashApp donations to <strong>$angcenteno</strong></p>
-								<img className="w-[250px] m-auto" src="https://papiobituary.s3.us-east-1.amazonaws.com/cashapp.jpg" />
+								<div className={`col-span-6 md:col-span-2`}>
+									<h2 className={`text-lg font-bold mb-0 uppercase`}>Donate with Zelle</h2>
+									<p className={`mb-2`}>Please send Zelle donations to <strong>407-338-9299</strong> or use this QR code:</p>
+									<img className="w-[200px] m-auto" src="https://papiobituary.s3.us-east-1.amazonaws.com/zelle-mami.jpg" />
+								</div>
+								<div className={`col-span-6 md:col-span-2`}>
+									<h2 className={`text-lg font-bold mb-0 uppercase`}>Donate with PayPal</h2>
+									<p className={`mb-2`}>Please send PayPal donations to <strong>jeisleyann@gmail.com</strong></p>
+									<img className="w-[200px] m-auto" src="https://papiobituary.s3.us-east-1.amazonaws.com/paypal.jpg" />
+								</div>
+								<div className={`col-span-6 md:col-span-2`}>
+									<h2 className={`text-lg font-bold mb-0 uppercase`}>Donate with Cash App</h2>
+									<p className={`mb-2`}>Please send CashApp donations to <strong>$angcenteno</strong></p>
+									<img className="w-[250px] m-auto" src="https://papiobituary.s3.us-east-1.amazonaws.com/cashapp.jpg" />
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
 
 			</section>
 			
